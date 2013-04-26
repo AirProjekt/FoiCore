@@ -1,0 +1,4 @@
+FoiCore
+=======
+
+FOI Core projekt
