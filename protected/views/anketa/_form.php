@@ -1,48 +1,22 @@
-<?php
-/* @var $this AnketaController */
-/* @var $model Anketa */
-/* @var $form CActiveForm */
-?>
+<form name="Anketa" method="POST" action='rez.php'> 
+	<div id="oanketi">
+		<div style='float:left;margin-top:25px;margin-left:25px;width:70%'>
+			<div style='float:left;width:100%'><span style='color:#2F4F4F;font-family:Calibri;font-size:17px'>Naziv ankete:</span></div>
+			<div style='float:left;width:100%'><input name='naziv_ankete' type='text' class='tf' /></div>
+			<div style='float:left;width:100%;height:10px'>&nbsp;</div>
+			<div style='float:left;width:100%'><span style='color:#2F4F4F;font-family:Calibri;font-size:17px'>Opis ankete:</span></div>
+			<div style='float:left;width:100%'><textarea name='opis_ankete' class='ta'></textarea></div>
+			<div style='float:left;width:100%;height:10px'>&nbsp;</div>
+		</div>
+	</div>
+	
 
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'anketa-form',
-	'enableAjaxValidation'=>false,
-)); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
-        
-        <div class="row">
-		<?php echo $form->labelEx($model,'tema_id'); ?>
-		<?php echo $form->dropDownList($model,'tema_id', $model->getThemeNames()); ?>
-		<?php echo $form->error($model,'tema_id'); ?>
+	<div id='pitanja'>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'naziv'); ?>
-		<?php echo $form->textField($model,'naziv',array('size'=>60,'maxlength'=>60)); ?>
-		<?php echo $form->error($model,'naziv'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'datum'); ?>
-		<?php echo $form->textField($model,'datum'); ?>
-		<?php echo $form->error($model,'datum'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'klijent_id'); ?>
-		<?php echo $form->textField($model,'klijent_id'); ?>
-		<?php echo $form->error($model,'klijent_id'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-
-</div><!-- form -->
+	
+	<div id="zadnji_izbornik">
+		<div style='float:left;width:100px;margin-top:10px;margin-left:10px;margin-right:15px;'><input name="potvrdi" value="Spremi anketu" type="submit"/></div>
+		<div style='float:left;width:100px;margin-top:10px;'><input id="dodpit" value="Dodaj pitanje" type="button"/></div>
+	</div>	
+</form>

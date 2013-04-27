@@ -1,0 +1,78 @@
+*{
+	padding:0;
+	margin:0;
+}
+
+#content{
+	float:left;
+	width:700px;
+	min-height:500px;
+	height:auto;
+	margin-left:4px;
+}
+
+
+#oanketi{
+	float:left;
+	width:100%;
+	min-height:270px;
+	background-color:#cccccc;
+	border-bottom:2px dashed #777777;
+}
+
+
+input.tf{
+	width:100%;
+	border:1px solid #444444;
+	height:30px;
+}
+
+select.pttipcb{
+	width:100%;
+	border:1px solid #444444;
+	height:30px;
+}
+
+textarea.ta{
+	width:100%;
+	border:1px solid #444444;
+	height:130px;
+}
+
+
+.pitanje_neparno{
+	float:left;
+	width:100%;
+	min-height:200px;
+	border-bottom:4px dashed #333333;
+	background-image:url(gr2.png);
+	background-repeat:repeat-x;
+	background-color:#9DEDE7;
+	display:none;
+}
+
+#zadnji_izbornik{
+	float:left;
+	width:100%;
+	background-image:url(zadnjiizbbg.png);
+	background-repeat:repeat-x;
+	height:60px;
+}
+
+
+select.sel{
+	width:200px;
+	height:30px;
+	border:1px solid #666666;
+}
+
+
+.izbori_pitanja{
+	float:left;
+	width:70%;
+	margin-left:25px;
+	margin-top:10px;
+}
+
+
+.izbrpit{display:none;}
