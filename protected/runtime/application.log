@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2013/04/16 23:18:42 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\yii\framework\web\CController.php:336
 Stack trace:
 #0 D:\xampp\htdocs\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
@@ -409,3 +410,5 @@ Stack trace:
 #13 {main}
 REQUEST_URI=/FoiCore/index.php?r=anketa/create
 ---
+=======
+>>>>>>> Napravljena autentikacija

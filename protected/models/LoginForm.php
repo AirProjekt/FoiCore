@@ -7,9 +7,9 @@
  */
 class LoginForm extends CFormModel
 {
-	public $username;
-	public $password;
-	public $rememberMe;
+	public $email;
+	public $lozinka;
+	public $zapamtiMe;
 
 	private $_identity;
 
@@ -22,11 +22,11 @@ class LoginForm extends CFormModel
 	{
 		return array(
 			// username and password are required
-			array('username, password', 'required'),
+			array('email, lozinka', 'required'),
 			// rememberMe needs to be a boolean
-			array('rememberMe', 'boolean'),
+			array('zapamtiMe', 'boolean'),
 			// password needs to be authenticated
-			array('password', 'authenticate'),
+			array('lozinka', 'authenticate'),
 		);
 	}
 
@@ -36,7 +36,7 @@ class LoginForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'rememberMe'=>'Remember me next time',
+			'rememberMe'=>'Zapamti me za sljedeći put',
 		);
 	}
 
@@ -48,9 +48,12 @@ class LoginForm extends CFormModel
 	{
 		if(!$this->hasErrors())
 		{
-			$this->_identity=new UserIdentity($this->username,$this->password);
+			$this->_identity=new UserIdentity($this->email,$this->lozinka);
 			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect username or password.');
+                        {
+				$this->addError('email','');
+                                $this->addError('lozinka','Korisničko ime i/ili lozinka nisu ispravni.');
+                        }
 		}
 	}
 
@@ -62,12 +65,12 @@ class LoginForm extends CFormModel
 	{
 		if($this->_identity===null)
 		{
-			$this->_identity=new UserIdentity($this->username,$this->password);
+			$this->_identity=new UserIdentity($this->email,$this->lozinka);
 			$this->_identity->authenticate();
 		}
 		if($this->_identity->errorCode===UserIdentity::ERROR_NONE)
 		{
-			$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
+			$duration=$this->zapamtiMe ? 3600*24*30 : 0; // 30 days
 			Yii::app()->user->login($this->_identity,$duration);
 			return true;
 		}
