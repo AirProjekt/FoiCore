@@ -62,8 +62,12 @@ class AnketaController extends Controller
 	 */
 	public function actionCreate()
 	{
+            
 		$model=new Anketa;
-
+                $themesArray = $model->getThemeNames();
+                if(empty($themesArray)){
+                    throw new CHttpException(404,'Nije unesena niti jedna tema u sustav!');
+                }
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 

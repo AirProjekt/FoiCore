@@ -14,6 +14,12 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'tema_id'); ?>
+		<?php echo $form->dropDownList($model,'tema_id', $model->getThemeNames()); ?>
+		<?php echo $form->error($model,'tema_id'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'naziv'); ?>
@@ -25,12 +31,6 @@
 		<?php echo $form->labelEx($model,'datum'); ?>
 		<?php echo $form->textField($model,'datum'); ?>
 		<?php echo $form->error($model,'datum'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'tema_id'); ?>
-		<?php echo $form->textField($model,'tema_id'); ?>
-		<?php echo $form->error($model,'tema_id'); ?>
 	</div>
 
 	<div class="row">

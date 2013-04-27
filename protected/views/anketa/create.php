@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Anketa</h1>
+<h1>Stvori novu anketu</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

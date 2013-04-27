@@ -103,4 +103,9 @@ class Anketa extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getThemeNames() {
+            $themesArray = CHtml::listData(Tema::model()->findAll(), 'id', 'naziv');
+            return $themesArray;
+        }
 }
