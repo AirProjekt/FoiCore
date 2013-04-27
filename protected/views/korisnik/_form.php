@@ -41,15 +41,34 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'tel_ank'); ?>
-		<?php echo $form->textField($model,'tel_ank'); ?>
+		<?php echo $form->radioButtonList($model,'tel_ank',array('1'=>'Da','0'=>'Ne')); ?>
 		<?php echo $form->error($model,'tel_ank'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'obav_mail'); ?>
-		<?php echo $form->textField($model,'obav_mail'); ?>
+		<?php echo $form->radioButtonList($model,'obav_mail',array('1'=>'Da','0'=>'Ne')); ?>
 		<?php echo $form->error($model,'obav_mail'); ?>
 	</div>
+        
+        <div class="row">
+                <?php echo $form->labelEx($modelKorisnici,'email'); ?>
+                <?php echo $form->textField($modelKorisnici, 'email') ?>
+                <?php echo $form->error($modelKorisnici,'email'); ?>
+        </div>
+        
+        <div class="row">
+            <?php echo $form->labelEx($modelKorisnici,'lozinka'); ?>
+            <?php echo $form->passwordField($modelKorisnici,'lozinka',array('size'=>20,'maxlength'=>255)); ?>
+            <?php echo $form->error($modelKorisnici,'lozinka'); ?>
+        </div>
+        
+        
+        <div class="row">
+            <?php echo $form->labelEx($modelKorisnici,'lozinka_repeat'); ?>
+            <?php echo $form->passwordField($modelKorisnici,'lozinka_repeat',array('size'=>20,'maxlength'=>255)); ?>
+            <?php echo $form->error($modelKorisnici,'lozinka_repeat'); ?>
+        </div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'korisnici_id'); ?>
@@ -58,7 +77,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Pošalji' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

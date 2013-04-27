@@ -20,6 +20,7 @@
  */
 class Korisnik extends CActiveRecord
 {
+        
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -81,9 +82,9 @@ class Korisnik extends CActiveRecord
 			'ime' => 'Ime',
 			'prezime' => 'Prezime',
 			'telefon' => 'Telefon',
-			'kljucne_rijeci' => 'Kljucne Rijeci',
-			'tel_ank' => 'Tel Ank',
-			'obav_mail' => 'Obav Mail',
+			'kljucne_rijeci' => 'Ključne riječi',
+			'tel_ank' => 'Telefonsko anketiranje',
+			'obav_mail' => 'Obavještavanje elektroničkom poštom',
 			'korisnici_id' => 'Korisnici',
 		);
 	}

@@ -14,6 +14,7 @@
  */
 class Korisnici extends CActiveRecord
 {
+        public $lozinka_repeat;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -40,12 +41,15 @@ class Korisnici extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, lozinka', 'required'),
+			array('email, lozinka, lozinka_repeat', 'required'),
 			array('email', 'length', 'max'=>50),
 			array('lozinka', 'length', 'max'=>100),
+                        array('lozinka', 'compare'),
+                        array('lozinka_repeat', 'safe'),
+                        array('email','email'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, email, lozinka', 'safe', 'on'=>'search'),
+			array('id, email, lozinka', 'safe', 'on'=>'search')
 		);
 	}
 
@@ -71,6 +75,8 @@ class Korisnici extends CActiveRecord
 			'id' => 'ID',
 			'email' => 'Email',
 			'lozinka' => 'Lozinka',
+                        'lozinka_repeat'=>'Potvrda lozinke',
+                        'email'=>'Adresa elektkroničke pošte'
 		);
 	}
 

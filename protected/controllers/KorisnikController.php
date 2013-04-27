@@ -28,11 +28,11 @@ class KorisnikController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'create'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('update'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -63,19 +63,33 @@ class KorisnikController extends Controller
 	public function actionCreate()
 	{
 		$model=new Korisnik;
+                $modelKorisnici = new Korisnici;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Korisnik']))
+		if(isset($_POST['Korisnik']) && isset($_POST['Korisnici']))   
 		{
 			$model->attributes=$_POST['Korisnik'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                        $modelKorisnici->attributes = $_POST['Korisnici'];
+                        
+                        $ispravno = $model->validate();
+                        $ispravno = $modelKorisnici->validate() && $ispravno;
+                        
+                        if($ispravno)
+                        {
+                            
+                            $modelKorisnici->save(false);
+                            $model->save(false);
+                        }
+                        
+//			if($model->save())
+//				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+                        'modelKorisnici'=>$modelKorisnici
 		));
 	}
 

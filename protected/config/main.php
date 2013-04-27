@@ -5,8 +5,7 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
-//Komentar Filip
-//Komentar Luki nazad
+
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
@@ -27,7 +26,7 @@ return array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'Luka',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
+			'ipFilters'=>array('127.0.0.1:8080','::1'),
 		),
 		
 	),
