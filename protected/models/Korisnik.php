@@ -47,8 +47,8 @@ class Korisnik extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ime, prezime, telefon, kljucne_rijeci, tel_ank, obav_mail, korisnici_id', 'required'),
-			array('tel_ank, obav_mail, korisnici_id', 'numerical', 'integerOnly'=>true),
+			array('ime, prezime, telefon, tel_ank, obav_mail', 'required'),
+			array('tel_ank, obav_mail', 'numerical', 'integerOnly'=>true),
 			array('ime', 'length', 'max'=>30),
 			array('prezime', 'length', 'max'=>40),
 			array('telefon', 'length', 'max'=>20),

@@ -74,12 +74,14 @@ class KorisnikController extends Controller
                         $modelKorisnici->attributes = $_POST['Korisnici'];
                         
                         $ispravno = $model->validate();
+                        
                         $ispravno = $modelKorisnici->validate() && $ispravno;
                         
                         if($ispravno)
                         {
                             
                             $modelKorisnici->save(false);
+                            $model->korisnici_id = $modelKorisnici->id;
                             $model->save(false);
                         }
                         

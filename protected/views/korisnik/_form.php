@@ -34,12 +34,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'kljucne_rijeci'); ?>
-		<?php echo $form->textArea($model,'kljucne_rijeci',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'kljucne_rijeci'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'tel_ank'); ?>
 		<?php echo $form->radioButtonList($model,'tel_ank',array('1'=>'Da','0'=>'Ne')); ?>
 		<?php echo $form->error($model,'tel_ank'); ?>
@@ -71,9 +65,9 @@
         </div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'korisnici_id'); ?>
-		<?php echo $form->textField($model,'korisnici_id'); ?>
-		<?php echo $form->error($model,'korisnici_id'); ?>
+		<?php //echo $form->labelEx($model,'korisnici_id'); ?>
+		<?php //echo $form->textField($model,'korisnici_id'); ?>
+		<?php //echo $form->error($model,'korisnici_id'); ?>
 	</div>
 
 	<div class="row buttons">
