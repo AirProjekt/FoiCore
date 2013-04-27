@@ -69,9 +69,11 @@ class KorisniciController extends Controller
 
 		if(isset($_POST['Korisnici']))
 		{
+                    
 			$model->attributes=$_POST['Korisnici'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                        $model->save();
+//			if($model->save())
+//				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(

@@ -2,6 +2,7 @@
 
 class KorisnikController extends Controller
 {
+        protected $positiveFeedback;
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -83,6 +84,8 @@ class KorisnikController extends Controller
                             $modelKorisnici->save(false);
                             $model->korisnici_id = $modelKorisnici->id;
                             $model->save(false);
+                            //$this->positiveFeedback = "Uspješno ste se registrirali.";
+                            Yii::app()->user->setFlash('success', $model->attributes['ime'].", uspješno ste se registrirali.");
                         }
                         
 //			if($model->save())

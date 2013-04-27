@@ -47,6 +47,7 @@ class Korisnici extends CActiveRecord
                         array('lozinka', 'compare'),
                         array('lozinka_repeat', 'safe'),
                         array('email','email'),
+                        array('email','unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, email, lozinka', 'safe', 'on'=>'search')

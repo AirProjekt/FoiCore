@@ -34,11 +34,17 @@ class UserIdentity extends CUserIdentity
             $lozinka = $this->password;
             
             $autentifikacija = Yii::app()->db->createCommand()
-                    ->select('email, lozinka')
-                    ->from('korisnici')
+                    ->select('korisnik.id, ime, email, lozinka')
+                    ->from('korisnici, korisnik')
                     ->where('email=:email', array(':email'=>$email))
-                    ->andWhere('lozinka=:lozinka', array(':lozinka'=>$lozinka))
+                    ->andWhere('lozinka=:lozinka AND 
+                        korisnik.korisnici_id=korisnici.id', 
+                        array(':lozinka'=>$lozinka))
                     ->queryRow();
+       
+            
+            Yii::app()->session['imeKorisnika'] = $autentifikacija['ime'];
+            Yii::app()->session['idKorisnika'] = $autentifikacija['id'];
             
             if($autentifikacija===false)
             {

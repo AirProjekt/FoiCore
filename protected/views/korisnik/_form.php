@@ -73,7 +73,13 @@
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Pošalji' : 'Save'); ?>
 	</div>
+        
+        
 
 <?php $this->endWidget(); ?>
+        
+<?php if(Yii::app()->user->hasFlash('success')):?>
+        <div class="successMessage"><?php echo Yii::app()->user->getFlash('success'); ?></div>
+<?php endif; ?>
 
 </div><!-- form -->
