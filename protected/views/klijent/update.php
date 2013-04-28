@@ -4,8 +4,8 @@
 
 $this->breadcrumbs=array(
 	'Klijenti'=>array('index'),
-	$model->ime=>array('view','id'=>$model->id),
-	'Ažuriraj podatke',
+	$model->naziv=>array('view','id'=>$model->id),
+	'Ažuriranje podataka o klijentu',
 );
 
 $this->menu=array(
@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Ažuriranje podataka o klijentu <?php echo $model->id; ?></h1>
+<h1>Ažuriranje podataka o klijentu: "<?php echo $model->naziv; ?>"</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model, 'modelKorisnici'=>$modelKorisnici)); ?>

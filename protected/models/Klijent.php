@@ -53,6 +53,7 @@ class Klijent extends CActiveRecord
 			array('kontakt_osoba', 'length', 'max'=>70),
 			array('telefon', 'length', 'max'=>30),
 			array('mobitel', 'length', 'max'=>40),
+                        array('OIB', 'unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, naziv, adresa, OIB, kontakt_osoba, telefon, mobitel, ostalo, korisnici_id', 'safe', 'on'=>'search'),

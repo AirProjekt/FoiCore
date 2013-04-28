@@ -83,6 +83,7 @@ class KlijentController extends Controller
                             $modelKorisnici->save(false);
                             $model->korisnici_id = $modelKorisnici->id;
                             $model->save(false);
+                            Yii::app()->user->setFlash('success', "Novi klijent je uspješno dodan.");
                         }
                         
 //			if($t1 && $t2)
@@ -103,6 +104,7 @@ class KlijentController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+                $modelKorisnici = Korisnici::model()->findByAttributes(array('id'=>$model->korisnici_id));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -110,12 +112,25 @@ class KlijentController extends Controller
 		if(isset($_POST['Klijent']))
 		{
 			$model->attributes=$_POST['Klijent'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                        $modelKorisnici->attributes=$_POST['Korisnici'];
+                        
+                        $ispravno = $model->validate();
+                        $ispravno = $modelKorisnici->validate() && $ispravno;
+                        
+                        if($ispravno)
+                        {
+                            $model->save(false);
+                            $modelKorisnici->save(false);
+                            Yii::app()->user->setFlash('uspjesanUpdate', "Podaci su uspješno ažurirani.");
+                        }
+                        
+//			if($model->save())
+//				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+                        'modelKorisnici'=>$modelKorisnici,
+			'model'=>$model
 		));
 	}
 

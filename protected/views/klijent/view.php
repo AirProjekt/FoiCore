@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Klijenti'=>array('index'),
-	$model->ime,
+	$model->naziv,
 );
 
 $this->menu=array(
@@ -16,12 +16,12 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Klijent #<?php echo $model->id; ?></h1>
+<h1>Pregled podataka o klijentu: "<?php echo $model->naziv; ?>"</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+//		'id',
 		'naziv',
 		'adresa',
 		'OIB',
@@ -29,6 +29,6 @@ $this->menu=array(
 		'telefon',
 		'mobitel',
 		'ostalo',
-		'korisnici_id',
+//		'korisnici_id',
 	),
 )); ?>
