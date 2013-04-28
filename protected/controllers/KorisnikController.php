@@ -106,6 +106,7 @@ class KorisnikController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+                $modelKorisnici = Korisnici::model()->findByAttributes(array('id'=>$model->korisnici_id));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -113,11 +114,22 @@ class KorisnikController extends Controller
 		if(isset($_POST['Korisnik']))
 		{
 			$model->attributes=$_POST['Korisnik'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                        $modelKorisnici->attributes=$_POST['Korisnici'];
+                        
+                        $ispravno = $model->validate();
+                        $ispravno = $modelKorisnici->validate() && $ispravno;
+                        
+                        if($ispravno)
+                        {
+                            $model->save(false);
+                            $modelKorisnici->save(false);
+                            Yii::app()->user->setFlash('uspjesanUpdate', "Uspješno ste ažurirali svoje podatke.");
+                        }
+				//$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
+                        'modelKorisnici'=>$modelKorisnici,
 			'model'=>$model,
 		));
 	}

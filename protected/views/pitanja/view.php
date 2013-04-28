@@ -11,7 +11,7 @@ $this->menu=array(
 	array('label'=>'List Pitanja', 'url'=>array('index')),
 	array('label'=>'Create Pitanja', 'url'=>array('create')),
 	array('label'=>'Update Pitanja', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Pitanja', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Delete Pitanja', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Jeste li sigurni da želite obrisati ovu stavku?')),
 	array('label'=>'Manage Pitanja', 'url'=>array('admin')),
 );
 ?>

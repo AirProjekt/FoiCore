@@ -77,7 +77,7 @@ class Korisnici extends CActiveRecord
 			'email' => 'Email',
 			'lozinka' => 'Lozinka',
                         'lozinka_repeat'=>'Potvrda lozinke',
-                        'email'=>'Adresa elektkroničke pošte'
+                        'email'=>'Adresa elektroničke pošte'
 		);
 	}
 

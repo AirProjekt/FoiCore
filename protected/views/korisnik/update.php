@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Korisnik <?php echo $model->id; ?></h1>
+<h1>Ažuriranje podataka za korisnika: "<?php echo $model->ime." ".$model->prezime; ?>"</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('modelKorisnici'=>$modelKorisnici,'model'=>$model)); ?>
