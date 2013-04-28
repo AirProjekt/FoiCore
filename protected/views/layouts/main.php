@@ -32,7 +32,7 @@
 				array('label'=>'Početna', 'url'=>array('/site/index')),
 				//array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				//array('label'=>'Contact', 'url'=>array('/site/contact')),
-                                array('label'=>'Registracija', 'url'=>array('korisnik/create')),
+                                array('label'=>'Registracija', 'url'=>array('korisnik/create'),'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Prijava', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
