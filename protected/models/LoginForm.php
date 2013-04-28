@@ -36,7 +36,8 @@ class LoginForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'rememberMe'=>'Zapamti me za sljedeći put',
+			'zapamtiMe'=>'Zapamti me za sljedeći put',
+                        'email'=>'Adresa elektroničke pošte'
 		);
 	}
 

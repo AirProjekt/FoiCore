@@ -73,8 +73,8 @@ class Korisnici extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'email' => 'Email',
+			'id' => 'Oznaka',
+			'email' => 'Adresa elektroničke pošte',
 			'lozinka' => 'Lozinka',
                         'lozinka_repeat'=>'Potvrda lozinke',
                         'email'=>'Adresa elektroničke pošte'

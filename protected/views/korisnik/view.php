@@ -3,8 +3,8 @@
 /* @var $model Korisnik */
 
 $this->breadcrumbs=array(
-	'Korisniks'=>array('index'),
-	$model->id,
+	'Korisnik'=>array('index'),
+	$model->ime." ".$model->prezime,
 );
 
 $this->menu=array(
@@ -16,18 +16,26 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Korisnik #<?php echo $model->id; ?></h1>
+<h1>Podaci za korisnika: "<?php echo $model->ime." ".$model->prezime; ?>"</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
 		'ime',
 		'prezime',
 		'telefon',
 		'kljucne_rijeci',
 		'tel_ank',
-		'obav_mail',
-		'korisnici_id',
-	),
-)); ?>
+		'obav_mail'
+	)
+)); 
+
+    $this->widget('zii.widgets.CDetailView', array(
+        
+        'data'=>$modelKorisnici,
+        'attributes'=>array(
+            'email'
+        )
+    ));
+
+?>
