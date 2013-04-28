@@ -71,7 +71,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Pošalji' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Pošalji' : 'Spremi'); ?>
 	</div>
         
         

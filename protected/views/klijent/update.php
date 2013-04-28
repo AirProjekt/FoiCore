@@ -3,9 +3,9 @@
 /* @var $model Klijent */
 
 $this->breadcrumbs=array(
-	'Klijents'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Klijenti'=>array('index'),
+	$model->ime=>array('view','id'=>$model->id),
+	'Ažuriraj podatke',
 );
 
 $this->menu=array(
@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Klijent <?php echo $model->id; ?></h1>
+<h1>Ažuriranje podataka o klijentu <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

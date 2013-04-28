@@ -56,15 +56,33 @@
 		<?php echo $form->textArea($model,'ostalo',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'ostalo'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($modelKorisnici,'email'); ?>
+		<?php echo $form->textField($modelKorisnici,'email'); ?>
+		<?php echo $form->error($modelKorisnici,'email'); ?>
+	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($modelKorisnici,'lozinka'); ?>
+		<?php echo $form->passwordField($modelKorisnici,'lozinka'); ?>
+		<?php echo $form->error($modelKorisnici,'lozinka'); ?>
+	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($modelKorisnici,'lozinka_repeat'); ?>
+		<?php echo $form->passwordField($modelKorisnici,'lozinka_repeat'); ?>
+		<?php echo $form->error($modelKorisnici,'lozinka_repeat'); ?>
+	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'korisnici_id'); ?>
-		<?php echo $form->textField($model,'korisnici_id'); ?>
-		<?php echo $form->error($model,'korisnici_id'); ?>
+		<?php //echo $form->labelEx($model,'korisnici_id'); ?>
+		<?php //echo $form->textField($model,'korisnici_id'); ?>
+		<?php //echo $form->error($model,'korisnici_id'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Pošalji' : 'Spremi'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

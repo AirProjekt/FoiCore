@@ -3,8 +3,8 @@
 /* @var $model Klijent */
 
 $this->breadcrumbs=array(
-	'Klijents'=>array('index'),
-	'Create',
+	'Klijenti'=>array('index'),
+	'Novi klijent',
 );
 
 $this->menu=array(
@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Klijent</h1>
+<h1>Novi klijent</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model,'modelKorisnici'=>$modelKorisnici,)); ?>

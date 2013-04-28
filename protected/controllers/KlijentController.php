@@ -63,19 +63,35 @@ class KlijentController extends Controller
 	public function actionCreate()
 	{
 		$model=new Klijent;
+                $modelKorisnici = new Korisnici;
+//                $t1=false;
+//                $t2=false;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Klijent']))
+		if(isset($_POST['Klijent']) && isset($_POST['Korisnici']))
 		{
 			$model->attributes=$_POST['Klijent'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                        $modelKorisnici->attributes=$_POST['Korisnici'];
+                        
+                        $ispravno = $model->validate();
+                        $ispravno = $modelKorisnici->validate() && $ispravno;
+                        
+                        if($ispravno)
+                        {
+                            $modelKorisnici->save(false);
+                            $model->korisnici_id = $modelKorisnici->id;
+                            $model->save(false);
+                        }
+                        
+//			if($t1 && $t2)
+//				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+                        'model'=>$model,
+                        'modelKorisnici'=>$modelKorisnici
 		));
 	}
 

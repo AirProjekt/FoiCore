@@ -46,7 +46,7 @@ class Klijent extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('naziv, adresa, OIB, kontakt_osoba, telefon, mobitel, ostalo, korisnici_id', 'required'),
+			array('naziv, adresa, OIB, kontakt_osoba, telefon, mobitel, ostalo', 'required'),
 			array('korisnici_id', 'numerical', 'integerOnly'=>true),
 			array('naziv, adresa', 'length', 'max'=>60),
 			array('OIB', 'length', 'max'=>11),
@@ -78,11 +78,11 @@ class Klijent extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id' => 'Oznaka',
 			'naziv' => 'Naziv',
 			'adresa' => 'Adresa',
-			'OIB' => 'Oib',
-			'kontakt_osoba' => 'Kontakt Osoba',
+			'OIB' => 'OIB',
+			'kontakt_osoba' => 'Osoba za kontakt',
 			'telefon' => 'Telefon',
 			'mobitel' => 'Mobitel',
 			'ostalo' => 'Ostalo',

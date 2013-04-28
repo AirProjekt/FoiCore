@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Klijents',
+	'Klijenti',
 );
 
 $this->menu=array(
-	array('label'=>'Create Klijent', 'url'=>array('create')),
+	array('label'=>'Dodavanje novog klijenta', 'url'=>array('create')),
 	array('label'=>'Manage Klijent', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Klijents</h1>
+<h1>Klijenti</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

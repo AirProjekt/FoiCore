@@ -3,8 +3,8 @@
 /* @var $model Klijent */
 
 $this->breadcrumbs=array(
-	'Klijents'=>array('index'),
-	$model->id,
+	'Klijenti'=>array('index'),
+	$model->ime,
 );
 
 $this->menu=array(
