@@ -8,8 +8,8 @@
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'ProSurvey',
-
+	'name'=>'D-Management',
+	'theme'=>'mattskitchen',
 	// preloading 'log' component
 	'preload'=>array('log'),
 

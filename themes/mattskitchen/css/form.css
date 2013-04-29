@@ -111,10 +111,6 @@ div.form select.success
 	border-color: #C6D880;
 }
 
-div.form div.success label
-{
-	color: inherit;
-}
 
 div.form .errorSummary
 {
@@ -162,4 +158,3 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 	clear: left;
 	padding-left: 110px;
 }
-
