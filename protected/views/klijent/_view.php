@@ -4,10 +4,12 @@
 ?>
 
 <div class="view">
-
+<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
+ * 
+ */?>
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('naziv')); ?>:</b>
 	<?php echo CHtml::encode($data->naziv); ?>
@@ -32,6 +34,10 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('mobitel')); ?>:</b>
 	<?php echo CHtml::encode($data->mobitel); ?>
 	<br />
+        
+        <b><?php echo CHtml::encode($data->korisnici->getAttributeLabel('email')); ?>:</b>
+	<?php echo CHtml::encode($data->korisnici->email); ?>
+	<br />
 
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('ostalo')); ?>:</b>
@@ -43,5 +49,9 @@
 	<br />
 
 	*/ ?>
+        
+
+	<?php echo CHtml::link("Detalji", array('view', 'id'=>$data->id)); ?>
+	<br />
 
 </div>

@@ -3,8 +3,8 @@
 /* @var $model Korisnik */
 
 $this->breadcrumbs=array(
-	'Korisniks'=>array('index'),
-	'Create',
+	'Korisnici'=>array('index'),
+	'Registracija',
 );
 
 $this->menu=array(

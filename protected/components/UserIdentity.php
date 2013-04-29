@@ -33,7 +33,7 @@ class UserIdentity extends CUserIdentity
             $email = $this->username;
             $lozinka = $this->password;
             
-            $autentifikacija = Yii::app()->db->createCommand()
+            $autentifikacijaKorisnik = Yii::app()->db->createCommand()
                     ->select('korisnik.id, ime, email, lozinka')
                     ->from('korisnici, korisnik')
                     ->where('email=:email', array(':email'=>$email))
@@ -41,12 +41,28 @@ class UserIdentity extends CUserIdentity
                         korisnik.korisnici_id=korisnici.id', 
                         array(':lozinka'=>$lozinka))
                     ->queryRow();
+            
+            $autentifikacijaKlijent = Yii::app()->db->createCommand()
+                    ->select('klijent.id, naziv, email, lozinka')
+                    ->from('korisnici, klijent')
+                    ->where('email=:email', array(':email'=>$email))
+                    ->andWhere('lozinka=:lozinka AND 
+                        klijent.korisnici_id=korisnici.id', 
+                        array(':lozinka'=>$lozinka))
+                    ->queryRow();
        
+            if($autentifikacijaKorisnik)
+            {
+                Yii::app()->session['imeKorisnika'] = $autentifikacijaKorisnik['ime'];
+                Yii::app()->session['idKorisnika'] = $autentifikacijaKorisnik['id'];
+            }
+            else if($autentifikacijaKlijent)
+            {
+                Yii::app()->session['imeKorisnika'] = $autentifikacijaKlijent['naziv'];
+                Yii::app()->session['idKorisnika'] = $autentifikacijaKlijent['id'];
+            }
             
-            Yii::app()->session['imeKorisnika'] = $autentifikacija['ime'];
-            Yii::app()->session['idKorisnika'] = $autentifikacija['id'];
-            
-            if($autentifikacija===false)
+            if(($autentifikacijaKlijent OR $autentifikacijaKorisnik)===false)
             {
                 return false;
             }

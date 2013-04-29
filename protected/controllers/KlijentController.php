@@ -53,6 +53,7 @@ class KlijentController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+                        'modelKorisnici'=>Korisnici::model()->findByAttributes(array('id'=>$this->loadModel($id)->korisnici_id))
 		));
 	}
 
@@ -153,10 +154,12 @@ class KlijentController extends Controller
 	 */
 	public function actionIndex()
 	{
+                $modelKorisnici = new Korisnici;
 		$dataProvider=new CActiveDataProvider('Klijent');
-		$this->render('index',array(
+                $this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+               
 	}
 
 	/**

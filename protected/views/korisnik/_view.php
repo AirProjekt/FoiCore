@@ -4,10 +4,12 @@
 ?>
 
 <div class="view">
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+<?php
+/*	<b> echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
+ */
+ ?>
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('ime')); ?>:</b>
 	<?php echo CHtml::encode($data->ime); ?>
@@ -26,11 +28,11 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('tel_ank')); ?>:</b>
-	<?php echo CHtml::encode($data->tel_ank); ?>
+	<?php echo (CHtml::encode($data->tel_ank)==="1") ? 'da' : 'ne'; ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('obav_mail')); ?>:</b>
-	<?php echo CHtml::encode($data->obav_mail); ?>
+	<?php echo (CHtml::encode($data->obav_mail)==="1") ? 'da' : 'ne'; ?>
 	<br />
 
 	<?php /*

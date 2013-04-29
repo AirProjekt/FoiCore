@@ -31,4 +31,13 @@ $this->menu=array(
 		'ostalo',
 //		'korisnici_id',
 	),
-)); ?>
+)); 
+
+$this->widget('zii.widgets.CDetailView', array(
+	'data'=>$modelKorisnici,
+	'attributes'=>array(
+            'email'
+	),
+)); 
+
+?>

@@ -25,8 +25,8 @@ $this->menu=array(
 		'prezime',
 		'telefon',
 		'kljucne_rijeci',
-		'tel_ank',
-		'obav_mail'
+                array('name'=>'tel_ank','value'=>(($model->tel_ank==="1") ? 'da' : 'ne')),
+		array('name'=>'obav_mail', 'value'=>($model->obav_mail==="1") ? 'da' : 'ne')
 	)
 )); 
 
