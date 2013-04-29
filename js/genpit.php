@@ -15,7 +15,7 @@ echo("
 		<div style='float:left;width:70%;margin-left:25px;margin-top:10px'>
 				<select class='pttipcb' name='pit_tip".$ptbr."' pitbr='".$ptbr."' class='sel'>
 					<option selected='selected' value='1'>Jednostavni unos</option>
-					<option value='2'>Sloûeni unos</option>
+					<option value='2'>Slo≈æeni unos</option>
 					<option value='3'>Jednostruki unos</option>
 					<option value='4'>Visestruki izbor</option>
 					<option value='5'>Izbor iz liste</option>
@@ -25,8 +25,6 @@ echo("
 		<div class='izbori_pitanja' id='izbori_pitanja".$ptbr."' pitbr='".$ptbr."'>
 			
 		</div>
-	
-		<div style='float:left;width:70%;margin-left:25px;margin-top:10px;margin-bottom:17px'><input type='hidden' name='pitanje_obavezno".$ptbr."' value=''/><input name='pitanje_obavezno".$ptbr."' pitbr='".$ptbr."' style='margin-right:8px' type='checkbox'>Obavezno pitanje</input></div>
 	</div>
 ");
 ?>

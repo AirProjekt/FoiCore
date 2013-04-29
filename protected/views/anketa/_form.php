@@ -1,12 +1,16 @@
-<form name="Anketa" method="POST" action='rez.php'> 
+<?php if(Yii::app()->user->hasFlash('fail')):?>
+        <div class="flash-error"><?php echo Yii::app()->user->getFlash('fail'); ?></div>
+<?php endif; ?>
+
+<form name="Anketa" method="POST" action=<?php Yii::app()->getBaseUrl() .'/js/rez.php'?>>
+        <h3>Izaberite odgovarajuču temu za anketu:</h3>
+        <?php echo CHtml::dropDownList('nazivTeme', '', 
+              $model->getThemeNames(),
+              array('empty' => '(Odaberi temu)'));?>
 	<div id="oanketi">
 		<div style='float:left;margin-top:25px;margin-left:25px;width:70%'>
 			<div style='float:left;width:100%'><span style='color:#2F4F4F;font-family:Calibri;font-size:17px'>Naziv ankete:</span></div>
 			<div style='float:left;width:100%'><input name='naziv_ankete' type='text' class='tf' /></div>
-			<div style='float:left;width:100%;height:10px'>&nbsp;</div>
-			<div style='float:left;width:100%'><span style='color:#2F4F4F;font-family:Calibri;font-size:17px'>Opis ankete:</span></div>
-			<div style='float:left;width:100%'><textarea name='opis_ankete' class='ta'></textarea></div>
-			<div style='float:left;width:100%;height:10px'>&nbsp;</div>
 		</div>
 	</div>
 	

@@ -108,4 +108,9 @@ class Anketa extends CActiveRecord
             $themesArray = CHtml::listData(Tema::model()->findAll(), 'id', 'naziv');
             return $themesArray;
         }
+        
+//        public function beforeSave() {
+//            if($this->isNewRecord)
+//                $this->datum = date( 'Y-m-d H:i:s', time() );//new CDbExpression('NOW()');
+//        }
 }

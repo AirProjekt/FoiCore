@@ -64,6 +64,8 @@ class AnketaController extends Controller
 	{
             
 		$model=new Anketa;
+                $modelPitanja;
+                $modelOdgovori;
                 $themesArray = $model->getThemeNames();
                 if(empty($themesArray)){
                     throw new CHttpException(404,'Nije unesena niti jedna tema u sustav!');
@@ -71,13 +73,56 @@ class AnketaController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Anketa']))
-		{
-			$model->attributes=$_POST['Anketa'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
+                if(!empty($_POST)) {
+                  $flag = false;
+                    foreach ($_POST as $key => $value) {
+                        if(empty($value)){
+                            Yii::app ()->user->setFlash ('fail', 'Ne smijete imati prazno polje');
+                            $flag = true;
+                        }
+                    }
+                    if(!$flag){
+                        $idTeme;
+                        foreach ($_POST as $key => $value) {
+//                            $this->render('debug', array('idTeme'=>strpos($key, 'odgo')));
+                            if (strpos($key, 'nazivTeme') !== false) {
+                                $idTeme = $value;
+//                                $this->render('debug', array('idTeme'=>$idTeme));
+                            }
+                            elseif (strpos($key, 'naziv_ankete') !== false) {
+                                
+                                $model->naziv = $value;
+                                $model->tema_id = $idTeme;
+                                
+                                $model->klijent_id = 1;//Yii::app()->session['idKorisnika'];
+                                $model->datum = new CDbExpression('NOW()');
+                                $model->save(false);
+//                                $this->render('debug', array('idTeme'=>$model->klijent_id));
+                            }
+                            elseif (strpos($key, 'pit_nas') !== false) {
+//                                $this->render('debug', array('idTeme'=>$value));
+                                $modelPitanja = new Pitanja;
+                                $modelPitanja->naziv = $value;
+                                $modelPitanja->anketa_id = $model->id;
+                            }
+                            elseif (strpos($key, 'pit_tip') !== false) {
+//                                $this->render('debug', array('idTeme'=>$value));
+                                $modelPitanja->tip = $value;
+                                $modelPitanja->save();
+                            }
+                            elseif (strpos($key, 'odgo_') !== false) {
+//                                $this->render('debug', array('idTeme'=>$value));
+                                $modelOdgovori = new Odgovori;
+                                $modelOdgovori->naziv = $value;
+                                $modelOdgovori->pitanja_id = $modelPitanja->id;
+                                $modelOdgovori->save();
+                            }
+                            else {
+                                $this->render('view', array('model'=>$model));
+                            }
+                        }
+                    }
+                }
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -120,6 +165,10 @@ class AnketaController extends Controller
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
+        
+        public function action($param) {
+            
+        }
 
 	/**
 	 * Lists all models.
