@@ -44,9 +44,53 @@ class RbacCommand extends CConsoleCommand
 				"pregled podataka o korisniku");  
 			 $this->_authManager->createOperation(
 				"azurirajKorisnika",
-				"azuriraj podatke o korisniku"); 
+				"azuriraj podatke o korisniku");
+                         $this->_authManager->createOperation(
+                                 "ispuniAnketu",
+                                 "ispuni anketu"
+                                 );
+                         $this->_authManager->createOperation(
+                                 "citajAnkete",
+                                 "procitaj popis anketa"
+                                 );
+                         
+                         //operacije za klijenta
+                         $this->_authManager->createOperation(
+                                 "pregledajIzvjesca" //klijent može pregledavati izvješća za ankete koje je stvorio
+                                 "pregledaj izvjesca za svoje ankete"
+                                 );
+                         
+                         $this->_authManager->createOperation(
+                                 "stvoriAnketu",
+                                 "stvori anketu"
+                                 );
+                         $this->_authManager->createOperation(
+                                 "citanjeKlijenta",
+                                 "citanje podataka o klijentu"
+                                 );
+                         $this->_authManager->createOperation(
+                                 "azurirajKlijenta",
+                                 "azuriranje podataka o klijentu"
+                                 );
 
-			 //create the lowest level operations for projects
+                         //operacije za content managera
+                         $this->_authManager->createOperation(
+                                 "pregledajIzvjesca",
+                                 "pregledaj izvjesca o anketama za content manageru dodijeljene korisnike"
+                                 );
+                         $this->_authManager->createOperation(
+                                 "stvoriKlijenta",
+                                 "stvori klijenta"
+                                 );
+                         $this->_authManager->createOption(
+                                 "stvoriTemu",
+                                 "stvori temu"
+                                 );
+                         $this->_authManager->createOption(
+                                 "azurirajTemu",
+                                 "azuriraj temu"
+                                 );
+                         
 //			 $this->_authManager->createOperation(
 //				"createProject",
 //				"create a new project"); 
@@ -78,6 +122,8 @@ class RbacCommand extends CConsoleCommand
 			 //permissions as children to this role
 			 $role=$this->_authManager->createRole("korisnik"); 
 			 $role->addChild("citajKorisnika");
+                         $role->addChild("azurirajKorisnika");
+                         $role->addChild("ispuniAnketu");
 //			 $role->addChild("readProject"); 
 //			 $role->addChild("readIssue"); 
 
