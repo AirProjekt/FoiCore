@@ -60,6 +60,14 @@ return array(
 			'password' => '',
 			'charset' => 'utf8',
 		),
+                
+//                'db'=>array(
+//			'connectionString' => 'mysql:host=localhost;dbname=tim10dig_dmanyii',
+//			'emulatePrepare' => true,
+//			'username' => 'tim10dig_filip',
+//			'password' => 'lozinkazabazu',
+//			'charset' => 'utf8',
+//		),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
