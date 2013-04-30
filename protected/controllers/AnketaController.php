@@ -28,7 +28,7 @@ class AnketaController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','formUnos'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -196,7 +196,10 @@ class AnketaController extends Controller
 		));
 	}
         
-        
+        public function actionFormUnos($id) {
+            $model = $this->loadModel($id);
+            $this->render('formUnos',array('model'=>$model));
+        }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

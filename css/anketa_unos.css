@@ -5,7 +5,7 @@
 
 #content{
 	float:left;
-	width:700px;
+	width:580px;
 	min-height:500px;
 	height:auto;
 	margin-left:4px;
@@ -13,7 +13,7 @@
 
 
 #oanketi{
-        margin-top: 15%;
+        margin-top: 5%;
 	float:left;
 	width:100%;
 	min-height:120px;

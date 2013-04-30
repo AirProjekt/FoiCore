@@ -6,7 +6,7 @@
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('naziv')); ?>:</b>
-        <?php echo CHtml::link(CHtml::encode($data->naziv), array('_formUnos', 'id'=>$data->id)); ?>
+        <?php echo CHtml::link(CHtml::encode($data->naziv), array('formUnos', 'id'=>$data->id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('datum')); ?>:</b>
