@@ -56,7 +56,7 @@ class RbacCommand extends CConsoleCommand
                          
                          //operacije za klijenta
                          $this->_authManager->createOperation(
-                                 "pregledajIzvjesca" //klijent može pregledavati izvješća za ankete koje je stvorio
+                                 "pregledajIzvjesca", //klijent može pregledavati izvješća za ankete koje je stvorio
                                  "pregledaj izvjesca za svoje ankete"
                                  );
                          
@@ -74,19 +74,19 @@ class RbacCommand extends CConsoleCommand
                                  );
 
                          //operacije za content managera
-                         $this->_authManager->createOperation(
-                                 "pregledajIzvjesca",
-                                 "pregledaj izvjesca o anketama za content manageru dodijeljene korisnike"
-                                 );
+//                         $this->_authManager->createOperation(
+//                                 "pregledajIzvjesca",
+//                                 "pregledaj izvjesca o anketama za content manageru dodijeljene korisnike"
+//                                 );
                          $this->_authManager->createOperation(
                                  "stvoriKlijenta",
                                  "stvori klijenta"
                                  );
-                         $this->_authManager->createOption(
+                         $this->_authManager->createOperation(
                                  "stvoriTemu",
                                  "stvori temu"
                                  );
-                         $this->_authManager->createOption(
+                         $this->_authManager->createOperation(
                                  "azurirajTemu",
                                  "azuriraj temu"
                                  );
@@ -124,6 +124,24 @@ class RbacCommand extends CConsoleCommand
 			 $role->addChild("citajKorisnika");
                          $role->addChild("azurirajKorisnika");
                          $role->addChild("ispuniAnketu");
+                         $role->addChild("citajAnkete");
+                         
+                         $role = $this->_authManager->createRole("klijent");
+                         $role->addChild("pregledajIzvjesca");
+                         $role->addChild("stvoriAnketu");
+                         $role->addChild("citanjeKlijenta");
+                         $role->addChild("azurirajKlijenta");
+                         $role->addChild("citajAnkete");
+                         
+                         $role = $this->_authManager->createRole("content_manager");
+                         $role->addChild("klijent");
+                         $role->addChild("korisnik");
+                         $role->addChild("stvoriKlijenta");
+                         $role->addChild("stvoriTemu");
+                         $role->addChild("azurirajTemu");
+                         
+                         $role = $this->_authManager->createRole("admin");
+                         $role->addChild("content_manager");
 //			 $role->addChild("readProject"); 
 //			 $role->addChild("readIssue"); 
 

@@ -84,6 +84,8 @@ class KlijentController extends Controller
                             $modelKorisnici->save(false);
                             $model->korisnici_id = $modelKorisnici->id;
                             $model->save(false);
+                            $auth=Yii::app()->authManager;
+                            $auth->assign('klijent', $model->korisnici_id);
                             Yii::app()->user->setFlash('success', "Novi klijent je uspješno dodan.");
                         }
                         
@@ -154,6 +156,7 @@ class KlijentController extends Controller
 	 */
 	public function actionIndex()
 	{
+                
                 $modelKorisnici = new Korisnici;
 		$dataProvider=new CActiveDataProvider('Klijent');
                 $this->render('index',array(

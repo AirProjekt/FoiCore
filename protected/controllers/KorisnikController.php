@@ -85,6 +85,9 @@ class KorisnikController extends Controller
                             $modelKorisnici->save(false);
                             $model->korisnici_id = $modelKorisnici->id;
                             $model->save(false);
+                            $businessRole = 'return Yii::app()->session["id"]==$params["korisnik"]->id';
+                            $auth = Yii::app()->authManager;
+                            $auth->assign('korisnik', $model->korisnici_id);
                             //$this->positiveFeedback = "Uspješno ste se registrirali.";
                             Yii::app()->user->setFlash('success', $model->attributes['ime'].", uspješno ste se registrirali.");
                         }

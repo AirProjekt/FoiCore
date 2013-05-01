@@ -124,7 +124,14 @@ class KorisniciController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Korisnici');
+                $model = $this->loadModel(Yii::app()->user->id);
+                $id = Yii::app()->user->id;
+                $params = array('korisnik'=>$model);
+                if(!Yii::app()->user->checkAccess('citajKorisnika'))
+                {
+                   throw new CHttpException(403, 'Nemate odgovarajuće ovlasti za izvršavanje ove radnje.');
+                }
+		$dataProvider=new CActiveDataProvider('Korisnici', array('criteria'=>array('condition'=>'id='.$id)));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

@@ -36,12 +36,16 @@
       <?php
         $menuItems = array(
           array('label'=>'Ankete', 'url'=>array('/anketa/index')),
-          array('label'=>'Registracija', 'url'=>array('/korisnik/create')),
-          array('label'=>'Prijava', 'url'=>array('/site/login')),
+          //array('label'=>'Registracija', 'url'=>array('/korisnik/create')),
+          array('label'=>'Registracija', 'url'=>array('korisnik/create'),'visible'=>Yii::app()->user->isGuest),
+          //array('label'=>'Prijava', 'url'=>array('/site/login')),
+          array('label'=>'Prijava', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+          array('label'=>'Odjava ('.Yii::app()->session['id'].')', 
+            'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
           array('label'=>'Teme', 'url'=>array('/tema/index')),
           array('label'=>'Korisnici','url'=>array('/korisnici/index')),
           //array('label'=>'Registracija','url'=>array('/site/index')),
-           array('label'=>'Klijenti','url'=>array('/klijenti/index'))
+           array('label'=>'Klijenti','url'=>array('/klijent/index'))
         );
       ?>
       <?php $this->widget('zii.widgets.CMenu',array(

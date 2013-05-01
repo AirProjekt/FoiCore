@@ -7,6 +7,7 @@
  */
 class UserIdentity extends CUserIdentity
 {
+        private $_id;
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -33,8 +34,9 @@ class UserIdentity extends CUserIdentity
             $email = $this->username;
             $lozinka = $this->password;
             
+            
             $autentifikacijaKorisnik = Yii::app()->db->createCommand()
-                    ->select('korisnik.id, ime, email, lozinka')
+                    ->select('korisnik.id, korisnik.korisnici_id, ime, email, lozinka')
                     ->from('korisnici, korisnik')
                     ->where('email=:email', array(':email'=>$email))
                     ->andWhere('lozinka=:lozinka AND 
@@ -43,7 +45,7 @@ class UserIdentity extends CUserIdentity
                     ->queryRow();
             
             $autentifikacijaKlijent = Yii::app()->db->createCommand()
-                    ->select('klijent.id, naziv, email, lozinka')
+                    ->select('klijent.id, klijent.korisnici_id, naziv, email, lozinka')
                     ->from('korisnici, klijent')
                     ->where('email=:email', array(':email'=>$email))
                     ->andWhere('lozinka=:lozinka AND 
@@ -54,12 +56,16 @@ class UserIdentity extends CUserIdentity
             if($autentifikacijaKorisnik)
             {
                 Yii::app()->session['imeKorisnika'] = $autentifikacijaKorisnik['ime'];
-                Yii::app()->session['idKorisnika'] = $autentifikacijaKorisnik['id'];
+                //Yii::app()->session['idKorisnika'] = $autentifikacijaKorisnik['id'];
+                Yii::app()->session['id'] = $autentifikacijaKorisnik['korisnici_id'];
+                $this->_id = $autentifikacijaKorisnik['korisnici_id'];
             }
             else if($autentifikacijaKlijent)
             {
                 Yii::app()->session['imeKorisnika'] = $autentifikacijaKlijent['naziv'];
-                Yii::app()->session['idKorisnika'] = $autentifikacijaKlijent['id'];
+                //Yii::app()->session['idKorisnika'] = $autentifikacijaKlijent['id'];
+                Yii::app()->session['id'] = $autentifikacijaKlijent['korisnici_id'];
+                $this->_id = $autentifikacijaKlijent['korisnici_id'];
             }
             
             if(($autentifikacijaKlijent OR $autentifikacijaKorisnik)===false)
@@ -71,4 +77,8 @@ class UserIdentity extends CUserIdentity
             
             return !$this->errorCode;
 	}
+        
+        public function getId() {
+            return $this->_id;
+        }
 }

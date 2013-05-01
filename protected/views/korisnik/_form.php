@@ -79,10 +79,10 @@
 <?php $this->endWidget(); ?>
         
 <?php if(Yii::app()->user->hasFlash('success')):?>
-        <div class="successMessage"><?php echo Yii::app()->user->getFlash('success'); ?></div>
+        <div class="flash-success"><?php echo Yii::app()->user->getFlash('success'); ?></div>
 <?php endif; ?>
 <?php if(Yii::app()->user->hasFlash('uspjesanUpdate')):?>
-        <div class="successMessage"><?php echo Yii::app()->user->getFlash('uspjesanUpdate'); ?></div>
+        <div class="flash-success"><?php echo Yii::app()->user->getFlash('uspjesanUpdate'); ?></div>
 <?php endif; ?>
 
 </div><!-- form -->

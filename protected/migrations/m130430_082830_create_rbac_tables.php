@@ -52,20 +52,10 @@ class m130430_082830_create_rbac_tables extends CDbMigration
             //the tbl_auth_assignment.userid is a reference
             //to tbl_user.id
             $this->addForeignKey(
-            "fk_auth_assignment_id_1",
+            "fk_auth_assignment_id",
             "tbl_auth_assignment",
             "userid",
-            "korisnik",
-            "id",
-            "CASCADE",
-            "CASCADE"
-            );
-            
-            $this->addForeignKey(
-            "fk_auth_assignment_id_2",
-            "tbl_auth_assignment",
-            "userid",
-            "klijent",
+            "korisnici",
             "id",
             "CASCADE",
             "CASCADE"
