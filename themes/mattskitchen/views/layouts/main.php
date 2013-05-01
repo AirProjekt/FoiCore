@@ -40,7 +40,7 @@
           array('label'=>'Registracija', 'url'=>array('korisnik/create'),'visible'=>Yii::app()->user->isGuest),
           //array('label'=>'Prijava', 'url'=>array('/site/login')),
           array('label'=>'Prijava', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-          array('label'=>'Odjava ('.Yii::app()->session['id'].')', 
+          array('label'=>'Odjava ('.Yii::app()->session['imeKorisnika'].')', 
             'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
           array('label'=>'Teme', 'url'=>array('/tema/index')),
           array('label'=>'Korisnici','url'=>array('/korisnik/index')),

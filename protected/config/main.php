@@ -95,12 +95,16 @@ return array(
 				*/
 			),
 		),
-                'language'=>'hr',
-                'coreMessages'=>array(
-                'basePath'=>'../protected/messages'
-                )
+                
+                
+                    'coreMessages'=>array(
+                        'basePath'=>null,
+                    ),
+                    
+                
 
 	),
+        'language'=>'hr',
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
