@@ -43,7 +43,7 @@
           array('label'=>'Odjava ('.Yii::app()->session['id'].')', 
             'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
           array('label'=>'Teme', 'url'=>array('/tema/index')),
-          array('label'=>'Korisnici','url'=>array('/korisnici/index')),
+          array('label'=>'Korisnici','url'=>array('/korisnik/index')),
           //array('label'=>'Registracija','url'=>array('/site/index')),
            array('label'=>'Klijenti','url'=>array('/klijent/index'))
         );

@@ -118,7 +118,7 @@ class AnketaController extends Controller
                                 $modelOdgovori->save();
                             }
                             else {
-                                $this->render('view', array('model'=>$model));
+                                $this->redirect(array('view','id'=>$model->id));
                             }
                         }
                     }
@@ -166,10 +166,7 @@ class AnketaController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
         
-        public function action($param) {
-            
-        }
-
+        
 	/**
 	 * Lists all models.
 	 */
@@ -197,8 +194,23 @@ class AnketaController extends Controller
 	}
         
         public function actionFormUnos($id) {
+            
             $model = $this->loadModel($id);
-            $this->render('formUnos',array('model'=>$model));
+            $modelOdgovori = new Odgovori;
+            
+            if(isset($_POST['Odgovori']))
+            {
+                if(!is_array($_POST['Odgovori']['pitanja_id']))
+                {
+                    $modelOdgovori->attributes = $_POST['Odgovori']['pitanja_id'];
+                    $modelOdgovori->validate();
+                }
+            }
+            
+            //if(!isset($_POST['Pitanja[naziv]']))
+            Yii::app()->user->setFlash ('poruka', 'Morate ispuniti svako pitanje!');
+            
+            $this->render('formUnos',array('model'=>$model,'modelOdgovori'=>$modelOdgovori));
         }
 
 	/**

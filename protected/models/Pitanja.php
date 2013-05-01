@@ -43,7 +43,7 @@ class Pitanja extends CActiveRecord
 		return array(
 			array('naziv, tip, anketa_id', 'required'),
 			array('tip, anketa_id', 'numerical', 'integerOnly'=>true),
-			array('naziv', 'length', 'max'=>200),
+			array('naziv', 'length', 'max'=>200),                       
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, naziv, tip, anketa_id', 'safe', 'on'=>'search'),

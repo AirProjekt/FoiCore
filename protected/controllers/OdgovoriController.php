@@ -62,8 +62,7 @@ class OdgovoriController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Odgovori;
-
+		$model = new Odgovori;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 

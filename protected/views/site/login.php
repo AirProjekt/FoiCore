@@ -3,9 +3,9 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
-$this->pageTitle=Yii::app()->name . ' - Login';
+$this->pageTitle=Yii::app()->name . ' - Prijava';
 $this->breadcrumbs=array(
-	'Login',
+	'Prijava',
 );
 ?>
 
@@ -16,22 +16,22 @@ $this->breadcrumbs=array(
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',
-	'enableClientValidation'=>true,
+	'enableClientValidation'=>false,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
 	<div class="row">
-		<?php echo $form->labelEx($model,'email'); ?>
+		<?php //echo $form->labelEx($model,'email'); ?>
+                <?php echo CHtml::activeLabel($model, 'email', array('required' => false)); ?>
 		<?php echo $form->textField($model,'email'); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'lozinka'); ?>
+		<?php //echo $form->labelEx($model,'lozinka'); ?>
+                <?php echo CHtml::activeLabel($model, 'lozinka', array('required' => false)); ?>
 		<?php echo $form->passwordField($model,'lozinka'); ?>
 		<?php echo $form->error($model,'lozinka'); ?>
 	</div>
