@@ -95,6 +95,11 @@ return array(
 				*/
 			),
 		),
+                'language'=>'hr',
+                'coreMessages'=>array(
+                'basePath'=>'../protected/messages'
+                )
+
 	),
 
 	// application-level parameters that can be accessed

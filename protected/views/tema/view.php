@@ -3,7 +3,7 @@
 /* @var $model Tema */
 
 $this->breadcrumbs=array(
-	'Temas'=>array('index'),
+	'Teme'=>array('index'),
 	$model->id,
 );
 
