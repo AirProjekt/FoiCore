@@ -113,4 +113,6 @@ class Korisnik extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+
 }

@@ -84,10 +84,7 @@ class KorisnikController extends Controller
                             
                             $modelKorisnici->save(false);
                             $model->korisnici_id = $modelKorisnici->id;
-                            $model->save(false);
-                            $businessRole = 'return Yii::app()->session["id"]==$params["korisnik"]->id';
-                            $auth = Yii::app()->authManager;
-                            $auth->assign('korisnik', $model->korisnici_id);
+                            $model->save(false);                            
                             //$this->positiveFeedback = "Uspješno ste se registrirali.";
                             Yii::app()->user->setFlash('success', $model->attributes['ime'].", uspješno ste se registrirali.");
                         }
@@ -156,8 +153,19 @@ class KorisnikController extends Controller
 	 * Lists all models.
 	 */
 	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Korisnik');
+	{              
+                $id = Yii::app()->user->id;
+                $role = Korisnici::model()->findByPk($id)->getRole();
+                var_dump($role);
+                $model = $this->loadModel($id);            
+                $params = array('korisnici'=>$model);
+                if(!Yii::app()->user->checkAccess('citajKorisnika',$params))
+                {
+                   throw new CHttpException(403, 'Nemate odgovarajuće ovlasti za izvršavanje ove radnje.');
+                }
+		$dataProvider=new CActiveDataProvider('Korisnik', 
+                        array('criteria'=>array(
+                                'condition'=>'id='.$id)));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

@@ -29,7 +29,7 @@ class KorisniciController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
@@ -124,14 +124,7 @@ class KorisniciController extends Controller
 	 */
 	public function actionIndex()
 	{
-                $model = $this->loadModel(Yii::app()->user->id);
-                $id = Yii::app()->user->id;
-                $params = array('korisnik'=>$model);
-                if(!Yii::app()->user->checkAccess('citajKorisnika'))
-                {
-                   throw new CHttpException(403, 'Nemate odgovarajuće ovlasti za izvršavanje ove radnje.');
-                }
-		$dataProvider=new CActiveDataProvider('Korisnici', array('criteria'=>array('condition'=>'id='.$id)));
+		$dataProvider=new CActiveDataProvider('Korisnici');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

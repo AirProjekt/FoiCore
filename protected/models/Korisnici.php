@@ -63,7 +63,7 @@ class Korisnici extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'klijents' => array(self::HAS_MANY, 'Klijent', 'korisnici_id'),
-			'korisniks' => array(self::HAS_MANY, 'Korisnik', 'korisnici_id'),
+			'korisniks' => array(self::HAS_MANY, 'Korisnik', 'korisnici_id'),                       
 		);
 	}
 
@@ -100,4 +100,15 @@ class Korisnici extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function afterSave() {
+            $id = $this->id;
+            $bizRule = 'return isset($params["korisnici"]) && '.$id.'==$params["korisnici"]->id;';
+            $auth = Yii::app()->authManager;
+            $auth->assign('korisnik', $id,$bizRule);
+        }
+        
+        public function getRole(){
+           return $this->auth->itemname;
+        }
 }

@@ -240,4 +240,5 @@ class AnketaController extends Controller
 			Yii::app()->end();
 		}
 	}
+
 }
