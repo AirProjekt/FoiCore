@@ -61,10 +61,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=dmanyii',
+			'connectionString' => 'mysql:host=sostaricit.servebeer.com;dbname=dmanyii',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'filip',
+			'password' => 'FilipVekiLuka2013',
 			'charset' => 'utf8',
 		),
                 
