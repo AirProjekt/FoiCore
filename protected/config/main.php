@@ -97,10 +97,6 @@ return array(
 			),
 		),
                 
-                
-                    'coreMessages'=>array(
-                        'basePath'=>null,
-                    ),
                     
                 
 
