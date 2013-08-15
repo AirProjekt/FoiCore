@@ -59,9 +59,7 @@ return array(
 //			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 //		),
 		// uncomment the following to use a MySQL database
-		//Opet neki komentar
-                //Jos jedan komentar
-                //Linux je govno
+		
 		'db'=>array(
 			'connectionString' => 'mysql:host=sostaricit.servebeer.com;dbname=dmanyii',
 			'emulatePrepare' => true,
