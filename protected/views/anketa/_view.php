@@ -5,8 +5,12 @@
 
 <div class="view">
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('naziv')); ?>:</b>
-        <?php echo CHtml::link(CHtml::encode($data->naziv), array('formUnos', 'id'=>$data->id)); ?>
+	<?php echo CHtml::encode($data->naziv); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('datum')); ?>:</b>
@@ -19,10 +23,6 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('klijent_id')); ?>:</b>
 	<?php echo CHtml::encode($data->klijent_id); ?>
-	<br />
-        
-        <b><?php echo CHtml::encode('Detalji o anketi'); ?>:</b>
-        <?php echo CHtml::link(CHtml::encode('Detalji'), array('view', 'id'=>$data->id)); ?>
 	<br />
 
 

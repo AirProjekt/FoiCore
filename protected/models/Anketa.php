@@ -19,16 +19,6 @@
 class Anketa extends CActiveRecord
 {
 	/**
-	 * Returns the static model of the specified AR class.
-	 * @param string $className active record class name.
-	 * @return Anketa the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
-
-	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -47,8 +37,9 @@ class Anketa extends CActiveRecord
 			array('naziv, datum, tema_id, klijent_id', 'required'),
 			array('tema_id, klijent_id', 'numerical', 'integerOnly'=>true),
 			array('naziv', 'length', 'max'=>60),
+                        //array('datum','date'),
 			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
+			// @todo Please remove those attributes that should not be searched.
 			array('id, naziv, datum, tema_id, klijent_id', 'safe', 'on'=>'search'),
 		);
 	}
@@ -84,12 +75,19 @@ class Anketa extends CActiveRecord
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
 
@@ -103,14 +101,24 @@ class Anketa extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return Anketa the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
         
-        public function getThemeNames() {
-            $themesArray = CHtml::listData(Tema::model()->findAll(), 'id', 'naziv');
-            return $themesArray;
+        protected function beforeValidate() {
+            if (empty($this->klijent_id) && empty($this->datum)) {
+                $this->klijent_id = Yii::app()->session['klijent_id'];
+                $this->datum = new CDbExpression('CURDATE()');
+            }
+            return parent::beforeValidate();
+            
         }
-        
-//        public function beforeSave() {
-//            if($this->isNewRecord)
-//                $this->datum = date( 'Y-m-d H:i:s', time() );//new CDbExpression('NOW()');
-//        }
 }

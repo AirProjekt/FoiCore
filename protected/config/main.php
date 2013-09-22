@@ -59,13 +59,12 @@ return array(
 //			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 //		),
 		// uncomment the following to use a MySQL database
-		//Opet neki komentar
-                //Jos jedan komentar
+
 		'db'=>array(
-			'connectionString' => 'mysql:host=sostaricit.servebeer.com;dbname=dmanyii',
+			'connectionString' => 'mysql:host=localhost;dbname=dmanyii',
 			'emulatePrepare' => true,
-			'username' => 'filip',
-			'password' => 'FilipVekiLuka2013',
+			'username' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 		),
                 

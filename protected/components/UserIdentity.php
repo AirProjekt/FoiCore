@@ -65,6 +65,7 @@ class UserIdentity extends CUserIdentity
                 Yii::app()->session['imeKorisnika'] = $autentifikacijaKlijent['naziv'];
                 //Yii::app()->session['idKorisnika'] = $autentifikacijaKlijent['id'];
                 Yii::app()->session['id'] = $autentifikacijaKlijent['korisnici_id'];
+                Yii::app()->session['klijent_id'] = $autentifikacijaKlijent['id'];
                 $this->_id = $autentifikacijaKlijent['korisnici_id'];
             }
             

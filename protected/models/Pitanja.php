@@ -15,6 +15,11 @@
  */
 class Pitanja extends CActiveRecord
 {
+        const TYPE_SIMPLE = 0;
+        const TYPE_COMPLEX = 1;
+        const TYPE_RADIO = 2;
+        const TYPE_CHECK = 3;
+        const TYPE_LIST = 4;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -96,4 +101,14 @@ class Pitanja extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getTypes() {
+            return array(
+                self::TYPE_SIMPLE=>'Jednostavni unos',
+                self::TYPE_COMPLEX=>'Složeni unos',
+                self::TYPE_RADIO=>'Jednostruki odabir',
+                self::TYPE_CHECK=>'Višestruki odabir',
+                self::TYPE_LIST=>'Odabir iz liste',
+            );
+        }
 }

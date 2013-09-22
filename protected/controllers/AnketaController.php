@@ -28,11 +28,11 @@ class AnketaController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','formUnos'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','field'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -62,67 +62,29 @@ class AnketaController extends Controller
 	 */
 	public function actionCreate()
 	{
-            
 		$model=new Anketa;
-                $modelPitanja;
-                $modelOdgovori;
-                $themesArray = $model->getThemeNames();
-                if(empty($themesArray)){
-                    throw new CHttpException(404,'Nije unesena niti jedna tema u sustav!');
-                }
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-                if(!empty($_POST)) {
-                  $flag = false;
-                    foreach ($_POST as $key => $value) {
-                        if(empty($value)){
-                            Yii::app ()->user->setFlash ('fail', 'Ne smijete imati prazno polje');
-                            $flag = true;
-                        }
-                    }
-                    if(!$flag){
-                        $idTeme;
-                        foreach ($_POST as $key => $value) {
-//                            $this->render('debug', array('idTeme'=>strpos($key, 'odgo')));
-                            if (strpos($key, 'nazivTeme') !== false) {
-                                $idTeme = $value;
-//                                $this->render('debug', array('idTeme'=>$idTeme));
-                            }
-                            elseif (strpos($key, 'naziv_ankete') !== false) {
-                                
-                                $model->naziv = $value;
-                                $model->tema_id = $idTeme;
-                                
-                                $model->klijent_id = 1;//Yii::app()->session['idKorisnika'];
-                                $model->datum = new CDbExpression('NOW()');
-                                $model->save(false);
-//                                $this->render('debug', array('idTeme'=>$model->klijent_id));
-                            }
-                            elseif (strpos($key, 'pit_nas') !== false) {
-//                                $this->render('debug', array('idTeme'=>$value));
-                                $modelPitanja = new Pitanja;
-                                $modelPitanja->naziv = $value;
-                                $modelPitanja->anketa_id = $model->id;
-                            }
-                            elseif (strpos($key, 'pit_tip') !== false) {
-//                                $this->render('debug', array('idTeme'=>$value));
-                                $modelPitanja->tip = $value;
-                                $modelPitanja->save();
-                            }
-                            elseif (strpos($key, 'odgo_') !== false) {
-//                                $this->render('debug', array('idTeme'=>$value));
-                                $modelOdgovori = new Odgovori;
-                                $modelOdgovori->naziv = $value;
-                                $modelOdgovori->pitanja_id = $modelPitanja->id;
-                                $modelOdgovori->save();
-                            }
-                            else {
-                                $this->redirect(array('view','id'=>$model->id));
+		if(isset($_POST['Anketa']))
+		{
+			$model->attributes=$_POST['Anketa'];
+			if($model->save()){
+                            if (isset($_POST['Pitanja'])) {
+                                $pitanja = $_POST['Pitanja'];
+                                foreach ($pitanja as $value) {
+                                    $pitanje = new Pitanja;
+                                    $pitanje->attributes = $value;
+                                    $pitanje->anketa_id = $model->id;
+                                }
                             }
                         }
-                    }
-                }
+                        $this->redirect(array('view','id'=>$model->id));
+		}
+                
+
+
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -165,8 +127,7 @@ class AnketaController extends Controller
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
-        
-        
+
 	/**
 	 * Lists all models.
 	 */
@@ -192,26 +153,6 @@ class AnketaController extends Controller
 			'model'=>$model,
 		));
 	}
-        
-        public function actionFormUnos($id) {
-            
-            $model = $this->loadModel($id);
-            $modelOdgovori = new Odgovori;
-            
-            if(isset($_POST['Odgovori']))
-            {
-                if(!is_array($_POST['Odgovori']['pitanja_id']))
-                {
-                    $modelOdgovori->attributes = $_POST['Odgovori']['pitanja_id'];
-                    $modelOdgovori->validate();
-                }
-            }
-            
-            //if(!isset($_POST['Pitanja[naziv]']))
-            Yii::app()->user->setFlash ('poruka', 'Morate ispuniti svako pitanje!');
-            
-            $this->render('formUnos',array('model'=>$model,'modelOdgovori'=>$modelOdgovori));
-        }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -240,5 +181,10 @@ class AnketaController extends Controller
 			Yii::app()->end();
 		}
 	}
-
+        
+        public function actionField($index) {
+            
+            $model = new Pitanja;
+            $this->renderPartial('/pitanja/_form', array('model'=>$model,'index'=>$index));
+        }
 }

@@ -1,26 +1,60 @@
-<?php if(Yii::app()->user->hasFlash('fail')):?>
-        <div class="flash-error"><?php echo Yii::app()->user->getFlash('fail'); ?></div>
-<?php endif; ?>
+<?php
+/* @var $this AnketaController */
+/* @var $model Anketa */
+/* @var $form CActiveForm */
+?>
 
-<form name="Anketa" method="POST" action=<?php Yii::app()->getBaseUrl() .'/js/rez.php'?>>
-        <h3>Izaberite odgovarajuču temu za anketu:</h3>
-        <?php echo CHtml::dropDownList('nazivTeme', '', 
-              $model->getThemeNames(),
-              array('empty' => '(Odaberi temu)'));?>
-	<div id="oanketi">
-		<div style='float:left;margin-top:25px;margin-left:25px;width:70%'>
-			<div style='float:left;width:100%'><span style='color:#2F4F4F;font-family:Calibri;font-size:17px'>Naziv ankete:</span></div>
-			<div style='float:left;width:100%'><input name='naziv_ankete' type='text' class='tf' /></div>
-		</div>
+<div class="form">
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'anketa-form',
+	// Please note: When you enable ajax validation, make sure the corresponding
+	// controller action is handling ajax validation correctly.
+	// There is a call to performAjaxValidation() commented in generated controller code.
+	// See class documentation of CActiveForm for details on this.
+	'enableAjaxValidation'=>false,
+)); ?>
+
+	<p class="note">Fields with <span class="required">*</span> are required.</p>
+
+	<?php echo $form->errorSummary($model); ?>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'tema_id'); ?>
+		<?php echo $form->dropDownList($model,'tema_id',  CHtml::listData(Tema::model()->findAll(), 'id', 'naziv')); ?>
+		<?php echo $form->error($model,'tema_id'); ?>
 	</div>
-	
 
-	<div id='pitanja'>
+	<div class="row">
+		<?php echo $form->labelEx($model,'naziv'); ?>
+		<?php echo $form->textField($model,'naziv',array('size'=>60,'maxlength'=>60)); ?>
+		<?php echo $form->error($model,'naziv'); ?>
+	</div>
+        <ul class="pitanja">
+            <?php $this->renderPartial('/pitanja/_form', array('model'=>new Pitanja,'index'=>$index = 0)); ?>
+        </ul>
+        
+        
+        <?php echo CHtml::button('Dodaj pitanje', array('class' => 'pitanje-add')) ?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 
-	
-	<div id="zadnji_izbornik">
-		<div style='float:left;width:100px;margin-top:10px;margin-left:10px;margin-right:15px;'><input name="potvrdi" value="Spremi anketu" type="submit"/></div>
-		<div style='float:left;width:100px;margin-top:10px;'><input id="dodpit" value="Dodaj pitanje" type="button"/></div>
-	</div>	
-</form>
+<?php $this->endWidget(); ?>
+
+</div><!-- form -->
+
+<?php Yii::app()->clientScript->registerCoreScript("jquery")?>
+<script>
+    $(".pitanje-add").click(function(){
+        $.ajax({
+          url: "<?php echo $this->createUrl('field'); ?>",
+          data: {index: $(".pitanja li").size()},
+          cache: false
+        })
+          .done(function( html ) {
+            $( ".pitanja" ).append( html );
+          });
+    });
+</script>

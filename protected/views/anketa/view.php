@@ -3,7 +3,7 @@
 /* @var $model Anketa */
 
 $this->breadcrumbs=array(
-	'Ankete'=>array('index'),
+	'Anketas'=>array('index'),
 	$model->id,
 );
 
@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Pregled ankete #<?php echo $model->id; ?></h1>
+<h1>View Anketa #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
