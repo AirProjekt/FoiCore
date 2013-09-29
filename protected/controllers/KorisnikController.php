@@ -155,8 +155,8 @@ class KorisnikController extends Controller
 	public function actionIndex()
 	{              
                 $id = Yii::app()->user->id;
-                $role = Korisnici::model()->findByPk($id)->getRole();
-                var_dump($role);
+                //$role = Korisnici::model()->findByPk($id)->getRole();
+                //var_dump($role);
                 $model = $this->loadModel($id);            
                 $params = array('korisnici'=>$model);
                 if(!Yii::app()->user->checkAccess('citajKorisnika',$params))
